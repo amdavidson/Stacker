@@ -6,7 +6,7 @@ import time
 
 start = time.time()
 
-maxsize = 3000, 3000
+#maxsize = 3000, 3000
 
 dir = sys.argv[1]
 
@@ -15,11 +15,11 @@ list = os.listdir(dir)
 images = []
 
 for file in list: 
-  print 'Getting images...'
   try:
     im = Image.open(dir + file)
   except IOError:
     continue
+  print 'Getting image...'
 
   if 'maxsize' in globals():        
     im.thumbnail(maxsize, Image.ANTIALIAS)
@@ -51,6 +51,6 @@ for x in range(w):
   for y in range(h):
     new.putpixel((x,y), (pixels[x][y][0], pixels[x][y][1], pixels[x][y][2]))
   
-new.save('/Users/amdavidson/Desktop/out.jpg', 'JPEG')
+new.save('/Users/amdavidson/Desktop/stack_' + str(time.time()) + '.jpg', 'JPEG')
 
-print str(count) + ' images processed in ' + str(time.time() - start)
+print str(count) + ' images processed in ' + str(int(time.time() - start)) + ' seconds.'
